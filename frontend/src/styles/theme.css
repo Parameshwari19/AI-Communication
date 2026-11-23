@@ -1,0 +1,149 @@
+/* ==========================================================================
+   Design tokens
+   Theme: "Studio" — a calm, focused recording-booth aesthetic.
+   Dual accent system: coral (energy / speaking) + teal (clarity / score).
+   Display type (Sora) carries personality in headings and big numbers;
+   Inter handles body copy; JetBrains Mono renders all data/metrics so
+   numbers feel measured, like a meter reading.
+   ========================================================================== */
+:root {
+  /* --- Surfaces --- */
+  --color-bg: #10141b;
+  --color-bg-elevated: #151b24;
+  --color-surface: #1a2129;
+  --color-surface-2: #212a35;
+  --color-border: #2a3340;
+  --color-border-soft: #1f2630;
+
+  /* --- Text --- */
+  --color-text: #f2f4f8;
+  --color-text-muted: #93a0b3;
+  --color-text-faint: #5d6878;
+
+  /* --- Accents --- */
+  --color-coral: #ff6b5b;
+  --color-coral-dim: #cc564a;
+  --color-coral-soft: rgba(255, 107, 91, 0.14);
+  --color-teal: #2dd4bf;
+  --color-teal-soft: rgba(45, 212, 191, 0.14);
+  --color-amber: #fbbf24;
+  --color-amber-soft: rgba(251, 191, 36, 0.14);
+  --color-green: #34d399;
+  --color-green-soft: rgba(52, 211, 153, 0.14);
+  --color-red: #f87171;
+  --color-red-soft: rgba(248, 113, 113, 0.14);
+
+  /* --- Typography --- */
+  --font-display: "Sora", "Inter", sans-serif;
+  --font-body: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: "JetBrains Mono", "SFMono-Regular", monospace;
+
+  /* --- Radii --- */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --radius-full: 999px;
+
+  /* --- Shadows --- */
+  --shadow-card: 0 10px 30px -8px rgba(0, 0, 0, 0.45);
+  --shadow-glow-coral: 0 0 0 1px rgba(255, 107, 91, 0.25), 0 8px 24px -6px rgba(255, 107, 91, 0.35);
+  --shadow-glow-teal: 0 0 0 1px rgba(45, 212, 191, 0.25), 0 8px 24px -6px rgba(45, 212, 191, 0.35);
+
+  /* --- Layout --- */
+  --max-width: 1180px;
+  --nav-height: 68px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--color-bg);
+  background-image:
+    radial-gradient(circle at 12% 8%, rgba(255, 107, 91, 0.06), transparent 40%),
+    radial-gradient(circle at 88% 18%, rgba(45, 212, 191, 0.07), transparent 45%);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  margin: 0;
+  color: var(--color-text);
+}
+
+p {
+  margin: 0;
+  color: var(--color-text-muted);
+  line-height: 1.6;
+}
+
+a {
+  color: var(--color-teal);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+button {
+  font-family: inherit;
+}
+
+::selection {
+  background: var(--color-coral-soft);
+}
+
+/* Respect reduced-motion preferences across the app */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Visible keyboard focus ring everywhere */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--color-teal);
+  outline-offset: 2px;
+}
+
+/* Scrollbar styling (webkit) for a more "studio" feel */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-surface-2);
+  border-radius: var(--radius-full);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-border);
+}
